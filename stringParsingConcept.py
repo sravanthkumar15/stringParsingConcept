@@ -36,12 +36,21 @@ for i in my_dictionary:
     if type(i)==str and type(my_dictionary[i])==str:
          final_dictionary_for_json[i] = my_dictionary[i]
 
-print()
-print(final_dictionary_for_json)
-
+cleaned_dict = {}
 
 for key in final_dictionary_for_json:
-    final_dictionary_for_json[key] = final_dictionary_for_json[key].replace('\n', '')
+    new_key = key.replace('\n', '').strip(' {}"\r\t')
+    new_value = final_dictionary_for_json[key].replace('\n', '').strip(' {}"\t')
+    cleaned_dict[new_key] = new_value
 
-print(final_dictionary_for_json)
+print(cleaned_dict)
+
+new_string = ''
+
+for i in cleaned_dict:
+     new_string = new_string + i + cleaned_dict[i]
+
+print(new_string)
+
+
 
